@@ -9,5 +9,7 @@ def find_anagrams(word, candidates):
         Returns :
             anagrams (list)
     """
+    word = word.lower()
+    signature =  "".join(sorted(word.lower()))
     
-    return [candidate for candidate in candidates  if "".join(sorted(candidate.lower())) == "".join(sorted(word.lower())) and candidate.lower() != word.lower()]
+    return [candidate for candidate in candidates  if "".join(sorted(candidate.lower())) == signature and candidate.lower() != word.lower()]
