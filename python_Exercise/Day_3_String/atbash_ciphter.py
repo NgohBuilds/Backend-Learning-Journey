@@ -4,9 +4,8 @@ Create an implementation of the Atbash cipher, an ancient encryption system crea
 import string 
 
 PLAIN = string.ascii_lowercase
-CIPHER = list(reversed(string.ascii_lowercase))
+CIPHER = PLAIN[::-1]
 LOOK_UP = str.maketrans(dict(zip(PLAIN,CIPHER)))
-PUNCTUATION = string.punctuation
 
 
 def encode(plain_text):
@@ -20,17 +19,17 @@ def encode(plain_text):
               - cipher (str) : cipher word of plain_text
     """
     count = 0
-    cipher_string = "".join(plain_text.lower().translate(LOOK_UP).split()) # cipher string but with punctuation 
+    encoded = "".join(plain_text.lower().translate(LOOK_UP).split())  
     cipher = ""
       
-    for letter in cipher_string :
+    for letter in encoded :
         if letter.isalnum():
-            if count < 5 :
-                cipher += letter
-                count += 1
-            else :
-                cipher += " "+letter
-                count = 1
+            if count == 5 :
+                cipher += " "
+                count = 0
+           
+            cipher += letter
+            count += 1
                   
     return cipher
       
