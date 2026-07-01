@@ -4,8 +4,8 @@ Create an implementation of the Atbash cipher, an ancient encryption system crea
 import string 
 
 PLAIN = string.ascii_lowercase
-CIPHER =list(reversed(string.ascii_lowercase))
-LOOK_UP = str.maketrans({plain : cipher for plain,cipher in zip(PLAIN,CIPHER)})
+CIPHER = list(reversed(string.ascii_lowercase))
+LOOK_UP = str.maketrans(dict(zip(PLAIN,CIPHER)))
 PUNCTUATION = string.punctuation
 
 
@@ -37,7 +37,6 @@ def encode(plain_text):
 def decode(ciphered_text):
     """    
         decode (function) : translate cipher word/sentence to latin word/sentence
-          
         - Args :
             - ciphered_text (str) :  ciphered text of a latin text
         - Returns:
