@@ -11,14 +11,10 @@ def is_paired(input_string):
             stack.append(bracket)
         elif bracket in BRACKETS.values():
             
-            if not stack :
+            if not stack  or bracket != BRACKETS[stack.pop()]:
                 return False
-                
-            last_open = stack.pop()
-            if bracket != BRACKETS[last_open] :
-                return False
-            
-    return len(stack) == 0
+       
+    return not stack
 
 print(is_paired("{[)][]}"))     # result : False
 print(is_paired("(((185 + 223.85) * 15) - 543)/2"))  # result : True
