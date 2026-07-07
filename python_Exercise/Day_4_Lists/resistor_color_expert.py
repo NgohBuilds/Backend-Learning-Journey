@@ -23,28 +23,30 @@ UNITS = ["ohms",  "kiloohms",  "megaohms", "gigaohms"]
 
 def format_bands(code, color_tolerance, zeros):
     """Format_bands."""
-    str_format_code = str(code)
-    tolerance = TOLERANCE[color_tolerance] 
-    code *= 10**(zeros % 3)
-    zeros -= zeros % 3
-    unit = zeros // 3 # x unit (ohms, kiloohms, ...)
-    result = code * 10**zeros
-    if len(str(result)) >= 4:
-        result = result * 10**-3
+    tolerance = TOLERANCE[color_tolerance]
+    code *= 10**zeros
+    unit = 0 # x unit (ohms, kiloohms, ...)
+    result = code 
+
+    while result >= 1000:
+        result /= 1000
         unit += 1
+        
     return f"{result:g} {UNITS[unit]} {tolerance}"
     
-    
-    
+       
 def resistor_label(colors):
-    """Blable."""
+    """returns colors label"""
+    if len(colors) == 1 :
+        return f"{COLORS.index(colors[0])} ohms"
+        
     result = 0
-    bands = (len(colors) // 2) + (len(colors) % 2)
+    bands = len(colors) - 2   
     
     for unit, color in enumerate(colors[:bands]) :
-        result += COLORS.index(color) * 10**(bands - unit - 1)
-     
-    multiplier = COLORS.index(colors[bands]) # Color at 3rd or 4th position
-    # result *= 10 ** multiplier
-    encoded = format_bands(result, colors[bands + 1], multiplier)
+        result += COLORS.index(color) * 10**(bands - unit - 1)   
+        
+    multiplier = COLORS.index(colors[bands])
+    encoded = format_bands(result, colors[-1], multiplier)
+
     return encoded
