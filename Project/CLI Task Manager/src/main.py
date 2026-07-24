@@ -1,3 +1,5 @@
+from utils import handle_option
+
 print(
     """
 =================================================
@@ -15,6 +17,10 @@ print(
 9. Exit
 
 ----------------------------------------------
-Choose an option :
+
     """
 )
+
+user_input = input("Choose an option :\t")
+
+handle_option(user_input)
