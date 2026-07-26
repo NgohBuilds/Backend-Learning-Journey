@@ -1,4 +1,7 @@
+import json
 from tasks import add_task
+
+
 
 class valueOutOfRangeOption(Exception):
     pass 
@@ -16,7 +19,7 @@ def is_value_option(input):
 def option_1 ():
 
 
-    task ={"Id" : "Blumberg", "status" : "Pending"} # Gerer la generation de ID
+    task ={"Id" : "Blumberg-2", "status" : "Pending"} # Gerer la generation de ID
     print("------------ Add Task ------------")
 
     for task_info in ["Title", "Description"]:
@@ -58,6 +61,19 @@ def handle_option(input):
             case 8 : print("This is option 8")
             case 9 : print("This is option 9")
 
-  
-        
+def load_file_content(json_file):
+        # Open the json file that contains tasks
+    try:
+        with open(json_file, 'r', encoding='utf-8') as file:
+            tasks = json.load(file)
+
+    except (FileNotFoundError , json.decoder.JSONDecodeError):
+        tasks = []
+    return tasks
+
+
+def save(json_file, tasks):
+         with open(json_file, 'w', encoding='utf-8' ) as file :
+                json.dump(tasks, file , indent= 4 , ensure_ascii= False )
+    
 
