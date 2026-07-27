@@ -1,14 +1,8 @@
 [
     {
-        "Id": "Blumberg",
+        "id": "0657804589fb11f1b338e073e72db7e5",
         "status": "Pending",
-        "Title": "First Task",
-        "Description": "Une mini description"
-    },
-    {
-        "Id": "Blumberg-2",
-        "status": "Pending",
-        "Title": "matask",
-        "Description": "petit test ave c le code"
+        "title": "Rediger le rapport de stage",
+        "description": "remettre une version ecrite des activites du stage"
     }
 ]

@@ -3,7 +3,7 @@ import utils
 
 TASKS_FILE = Path(__file__).parent / "tasks.json"
 
-def add_task (task):
+def add_task(task):
     """Add task."""
 
     
@@ -11,7 +11,7 @@ def add_task (task):
 
     # Check if task with the same id already exists
 
-    id_exists = any (elt["Id"] == task["Id"] for elt in tasks  )
+    id_exists = any (elt["id"] == task["id"] for elt in tasks  )
 
     # Add task and Save to JSON file to ensure persistence 
     if not id_exists : 

@@ -1,5 +1,9 @@
 import json
-from tasks import add_task
+import uuid
+import tasks
+import utils
+from pathlib import Path
+
 
 
 
@@ -19,28 +23,43 @@ def is_value_option(input):
 def option_1 ():
 
 
-    task ={"Id" : "Blumberg-2", "status" : "Pending"} # Gerer la generation de ID
+    task ={"id" : uuid.uuid1().hex, "status" : "Pending"} # Gerer la generation de ID
+    informations = ["title", "description"]
+
     print("------------ Add Task ------------")
 
-    for task_info in ["Title", "Description"]:
+    for task_info in informations:
 
         info = input("{} :\t".format(task_info))
 
-        while(info.isspace()):
+        while info.isspace():
                 print("{} must not be empty ! Try Again !")
                 info = input("{} :\t".format(task_info))
 
         task[task_info] = info
 
     
-    msg = "Task successfully created." if add_task(task) else "There's already a task with this id {}".format(task["Id"])
+    msg = "Task successfully created." if tasks.add_task(task) else "There's already a task with this id {}".format(task["id"])
 
     print("\n\t {}".format(msg))
 
 
     return msg
         
+def option_2():
+     """Display all Tasks."""
 
+     print("============== TASKS ==============\n")
+
+
+     for task in utils.load_file_content(tasks.TASKS_FILE):
+
+          print(""" 
+id : {} ,
+title : {} , 
+Status : {}
+________________________________________________________""".format(task["id"], task["title"], task["status"]))
+          
 def handle_option(input):
     """Call the function matching the num option."""
     try:
@@ -52,7 +71,7 @@ def handle_option(input):
     else:
         match (value):
             case 1 : option_1()
-            case 2 : print("This is option 2")
+            case 2 : option_2()
             case 3 : print("This is  option 3")
             case 4 : print("This is option 4")
             case 5 : print("This is option 5")
@@ -71,7 +90,16 @@ def load_file_content(json_file):
         tasks = []
     return tasks
 
+def update_task(id, tasks):
 
+    pos = 0
+    for index, task in enumerate(tasks):
+         if id == task.id:
+              task['']
+              break
+              
+     
+     
 def save(json_file, tasks):
          with open(json_file, 'w', encoding='utf-8' ) as file :
                 json.dump(tasks, file , indent= 4 , ensure_ascii= False )
