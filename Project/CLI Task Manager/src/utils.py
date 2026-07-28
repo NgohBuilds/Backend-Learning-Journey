@@ -59,7 +59,30 @@ id : {} ,
 title : {} , 
 Status : {}
 ________________________________________________________""".format(task["id"], task["title"], task["status"]))
-          
+
+
+def option_5():
+     print("----------- Update Task -----------\n")
+
+     id_task = str(input("Task ID :\t"))
+
+     try:
+
+        position_task = search_task_by_id(id_task, tasks.TASKS_FILE) # return position of task
+
+     except ValueError as e:
+        print("\n{}\n".format(e))
+        # Revenir au menu ou permettre de faire encore la saisie
+        option_5()
+
+     else:
+        msg = update(position_task, tasks.TASKS_FILE)
+        print(msg)
+        
+     
+
+
+
 def handle_option(input):
     """Call the function matching the num option."""
     try:
@@ -72,9 +95,9 @@ def handle_option(input):
         match (value):
             case 1 : option_1()
             case 2 : option_2()
-            case 3 : print("This is  option 3")
+            case 3 : print("This is Option 3")
             case 4 : print("This is option 4")
-            case 5 : print("This is option 5")
+            case 5 : option_5()
             case 6 : print("This is option 6")
             case 7 : print("This is option 7")
             case 8 : print("This is option 8")
@@ -90,18 +113,60 @@ def load_file_content(json_file):
         tasks = []
     return tasks
 
-def update_task(id, tasks):
+def search_task_by_id(id, json_file):
+     file = load_file_content(json_file)
 
-    pos = 0
-    for index, task in enumerate(tasks):
-         if id == task.id:
-              task['']
-              break
-              
+     current = 0
+
+     while current < len(file) and id != file[current]['id']:
+          current+= 1
+
+     if current == len(file):
+          raise ValueError("Your Id doesn't exists here ! Try Again !")
      
-     
+     return current 
+
+def update(pos_task, json_file):
+
+     file = load_file_content(json_file)
+
+     print("Current title : {} \n".format(file[pos_task]['title']))
+     new_title = str(input("New title :\t"))
+
+     while new_title.isspace():
+        print("\nTitle must not be empty ! You can copy and paste Current Title if you don't want modify it")
+        new_title = str(input("New title :\t"))
+
+
+     print("\nCurrent description {} :\n".format(file[pos_task]['description']))
+     new_description = str(input("New description : \t"))
+
+     while new_description.isspace():
+        print("Description must not be empty ! You can copy and paste Current description if you don't want modify it")
+        new_description = str(input("New description :\t"))
+
+     file[pos_task]['title'], file[pos_task]['description'] = new_title, new_description
+
+     save(json_file, file)
+
+     return "Task successfully updated."
+         
 def save(json_file, tasks):
          with open(json_file, 'w', encoding='utf-8' ) as file :
                 json.dump(tasks, file , indent= 4 , ensure_ascii= False )
+
+def handle_user_none_value(msg, *inputs):
+    """Ask to user to enter a value that is not null."""
+    results = []
+    for inp in inputs:
+        while inp.isspace():
+            print("\n{}".format(msg))
+            new_input = str(input("New title :\t"))
+        results.append(new_input)
+
+    return results # First Approach
     
+
+    
+
 
