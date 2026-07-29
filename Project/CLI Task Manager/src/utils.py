@@ -10,6 +10,8 @@ from pathlib import Path
 class valueOutOfRangeOption(Exception):
     pass 
 
+class ValueFormatError(ValueError):
+    pass
 
 
 def is_value_option(input):
@@ -79,10 +81,33 @@ def option_5():
         msg = update(position_task, tasks.TASKS_FILE)
         print(msg)
         
-     
+def option_8():
+    """Delete Tsks option."""    
 
+    print("---------- Delete Task ----------\n") 
 
+    task_id = str(input("Task ID :\t"))
 
+    try :
+        pos_task = search_task_by_id(task_id, tasks.TASKS_FILE)
+
+    except ValueError as e:
+        print(e)
+
+    else:
+        try:
+
+            reponse = confirm_msg(str(input("\nAre you sure ? (y/n)")))
+
+            if reponse == "y":
+                print(remove_task(pos_task, tasks.TASKS_FILE))
+            
+            else:
+                print("Task is not deleted.")
+        except ValueFormatError as e:
+            print(e)
+
+        
 def handle_option(input):
     """Call the function matching the num option."""
     try:
@@ -100,7 +125,7 @@ def handle_option(input):
             case 5 : option_5()
             case 6 : print("This is option 6")
             case 7 : print("This is option 7")
-            case 8 : print("This is option 8")
+            case 8 : option_8()
             case 9 : print("This is option 9")
 
 def load_file_content(json_file):
@@ -165,8 +190,21 @@ def handle_user_none_value(msg, *inputs):
         results.append(new_input)
 
     return results # First Approach
-    
 
+def remove_task(task_pos, json_file):
+    """Remove Task (use the task_id)"""
+
+    file = load_file_content(json_file)
+    file.pop(task_pos)
+    save(tasks.TASKS_FILE, file)
+    return "Task deleted."
+
+def confirm_msg(reponse):
+    """Say Yes (Y) or No (N)"""
+
+    if reponse not in ["y", "n"]:
+        raise ValueFormatError("y or n  expected !")
     
+    return reponse
 
 
