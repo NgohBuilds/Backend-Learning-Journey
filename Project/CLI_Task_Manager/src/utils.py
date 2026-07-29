@@ -152,25 +152,12 @@ def search_task_by_id(id, json_file):
      return current 
 
 def update(pos_task, json_file):
-
+     """Update task with a specific id"""
      file = load_file_content(json_file)
 
-     print("Current title : {} \n".format(file[pos_task]['title']))
-     new_title = str(input("New title :\t"))
+    # new_task_infos = (handle_user_none_value(input_name, file[pos_task][input_name]) for input_name in ['title', 'description'])
 
-     while new_title.isspace():
-        print("\nTitle must not be empty ! You can copy and paste Current Title if you don't want modify it")
-        new_title = str(input("New title :\t"))
-
-
-     print("\nCurrent description {} :\n".format(file[pos_task]['description']))
-     new_description = str(input("New description : \t"))
-
-     while new_description.isspace():
-        print("Description must not be empty ! You can copy and paste Current description if you don't want modify it")
-        new_description = str(input("New description :\t"))
-
-     file[pos_task]['title'], file[pos_task]['description'] = new_title, new_description
+     file[pos_task]['title'], file[pos_task]['description'] = (handle_user_none_value(input_name, file[pos_task][input_name]) for input_name in ['title', 'description'])
 
      save(json_file, file)
 
@@ -180,16 +167,16 @@ def save(json_file, tasks):
          with open(json_file, 'w', encoding='utf-8' ) as file :
                 json.dump(tasks, file , indent= 4 , ensure_ascii= False )
 
-def handle_user_none_value(msg, *inputs):
+def handle_user_none_value(input_name, info):
     """Ask to user to enter a value that is not null."""
-    results = []
-    for inp in inputs:
-        while inp.isspace():
-            print("\n{}".format(msg))
-            new_input = str(input("New title :\t"))
-        results.append(new_input)
 
-    return results # First Approach
+    print("Current {} : {} \n".format(input_name, info))
+    new_input = str(input("New {} :\t".format(input_name)))
+    
+    while new_input.isspace():
+        print("\nTitle must not be empty ! You can copy and paste Current {} if you don't want modify it".format(input_name))
+        new_input = str(input("New {} :\t".format(input_name)))
+    return new_input
 
 def remove_task(task_pos, json_file):
     """Remove Task (use the task_id)"""
