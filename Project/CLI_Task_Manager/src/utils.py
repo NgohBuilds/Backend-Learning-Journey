@@ -62,6 +62,14 @@ title : {} ,
 Status : {}
 ________________________________________________________""".format(task["id"], task["title"], task["status"]))
 
+def option_6():
+
+    print("------- Complete Task -------\n")
+    print(mark_task("Completed"))
+
+def option_7():
+    print("------- Pending Task -------\n")
+    print(mark_task("Pending"))
 
 def option_5():
      print("----------- Update Task -----------\n")
@@ -123,8 +131,8 @@ def handle_option(input):
             case 3 : print("This is Option 3")
             case 4 : print("This is option 4")
             case 5 : option_5()
-            case 6 : print("This is option 6")
-            case 7 : print("This is option 7")
+            case 6 : option_6()
+            case 7 : option_7()
             case 8 : option_8()
             case 9 : print("This is option 9")
 
@@ -194,4 +202,16 @@ def confirm_msg(reponse):
     
     return reponse
 
+def mark_task(status):
 
+    id = str(input('Task ID :\t'))
+    try :
+        pos_task = search_task_by_id(id, tasks.TASKS_FILE)
+    except ValueError as e:
+        print(e)
+        mark_task(status)
+    else :
+        tasks_json =load_file_content(tasks.TASKS_FILE)
+        tasks_json[pos_task]["status"] = status
+    save(tasks.TASKS_FILE, tasks_json)
+    return "Task marked as {}.".format(status)
