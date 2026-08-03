@@ -7,8 +7,20 @@
     },
     {
         "id": "f70cf4cc8afd11f19081e073e72db7e5",
-        "status": "Pending",
+        "status": "Completed",
         "title": "Refact old features",
         "description": "I gonna refact features (add_tasks and update)"
+    },
+    {
+        "id": "0cce63698cbe11f1a23cd4d8530188f2",
+        "status": "Completed",
+        "title": "",
+        "description": ""
+    },
+    {
+        "id": "a7d77e1e8f2811f19999d4d8530188f2",
+        "status": "Pending",
+        "title": "react",
+        "description": "react study session"
     }
 ]

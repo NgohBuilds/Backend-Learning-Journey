@@ -1,4 +1,4 @@
-from utils import handle_option
+import menu
 
 print(
     """
@@ -23,4 +23,4 @@ print(
 
 user_input = input("Choose an option :\t")
 
-handle_option(user_input)
+menu.handle_option(user_input)
