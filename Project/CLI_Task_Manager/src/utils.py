@@ -14,9 +14,15 @@ class ValueFormatError(ValueError):
 def is_value_option(input):
     """Evaluate if the input is between 1 - 9 [options]"""
 
-    if input not in range(1,10,1):
+    try: 
+        input = int(input)
+    except ValueError :
         return None
-    return input 
+
+    else :
+        if input  in range(1,10,1):
+            return input
+    return None
 
 
 

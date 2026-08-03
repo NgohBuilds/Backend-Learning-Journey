@@ -6,12 +6,12 @@ def handle_option(user_input):
     """Call the function matching the num option."""
 
     
-    value = utils.is_value_option(int(user_input))
+    value = utils.is_value_option(user_input)
 
     while value is None : 
         print("Your input is not Valid . Please Try Again ! (1 - 9 expected)\n")
         user_input = input("Choose an option :\t")
-        value = utils.is_value_option(int(user_input))
+        value = utils.is_value_option(user_input)
 
     match (value):
             case 1 : option_1()
