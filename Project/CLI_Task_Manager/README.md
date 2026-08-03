@@ -1,4 +1,4 @@
-# CLI Task Manager
+# CLI Task Manager -
 
 A command-line Task Manager built with Python as part of my **Backend Learning Journey**. This project focuses on applying core Python concepts through a complete CRUD application while progressively improving software design, code organization, and maintainability.
 
