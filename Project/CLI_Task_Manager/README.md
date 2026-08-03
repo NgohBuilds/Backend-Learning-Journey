@@ -80,6 +80,19 @@ During this project I practiced:
 
 ---
 
+## Development Process
+
+Rather than building the application all at once, I followed an incremental development process.
+
+1. Designed the application's architecture.
+2. Implemented one feature at a time.
+3. Tested each feature before continuing.
+4. Refactored duplicated and unnecessary code.
+5. Improved the project structure.
+6. Documented the final application.
+
+Following this workflow helped me understand the importance of writing maintainable code instead of simply writing code that works.
+
 ## Lessons Learned
 
 This project taught me how to:
@@ -121,7 +134,7 @@ git clone https://github.com/NgohBuilds/Backend-Learning-Journey.git
 Navigate to the project folder:
 
 ```bash
-cd Backend-Learning-Journey/CLI_Task_Manager
+cd Backend-Learning-Journey/Project/CLI_Task_Manager
 ```
 
 Run the application:
