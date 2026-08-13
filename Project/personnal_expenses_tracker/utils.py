@@ -1,13 +1,13 @@
 import json
 
-def is_num_option_valid(input):
+def is_num_option_valid(input, range_ = range(1,7)):
 
     try:
         input = int(input)
     except ValueError as e:
         print(f"\n {e}")
 
-    if input  not in range(0, 7, 1):
+    if input not in range_:
         return None
     return input
 
@@ -17,7 +17,7 @@ def load_expenses(storage):
     
     try:
         with open(storage, mode='r', encoding="utf-8") as storage_content :
-            expenses = json.loads(storage_content)
+            expenses = json.load(storage_content)
 
     except(FileNotFoundError, json.decoder.JSONDecodeError):
         return []
@@ -27,13 +27,21 @@ def load_expenses(storage):
 def save_expenses(storage, expenses):
 
     with open(storage, mode='w', encoding='utf-8') as storage_content:
-        json.dumps(expenses, storage_content , indent= 4 , ensure_ascii= False)
+        json.dump(expenses, storage_content , indent=4, ensure_ascii= False)
 
 def display_category_menu(categories):
     print("CATEGORIES :\n")
     for num_opt, category in enumerate(categories, start=1):
         print(f"{num_opt}. {category}")
     
+def handle_negative_value(amount):
+    if amount <= 0:
+        return None
+    return amount
+    
+
+
+
 
 
 

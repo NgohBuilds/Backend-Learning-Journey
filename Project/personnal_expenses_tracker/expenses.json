@@ -1,0 +1,58 @@
+[
+    {
+        "id": "60922e1466d24d96a94d573d7064fd5a",
+        "amount": 300000,
+        "category": "Transport",
+        "description": "",
+        "date": "2026/08/13 at 21:11:29"
+    },
+    {
+        "id": "f04e1d32559747d5b5d3827ad20b3082",
+        "amount": 1300,
+        "category": "Housing",
+        "description": "",
+        "date": "2026/08/13 at 21:20:03"
+    },
+    {
+        "id": "89e6341251934a63be1e80a9a136da95",
+        "amount": 22500,
+        "category": "Transport",
+        "description": "2",
+        "date": "2026/08/13 at 21:30:17"
+    },
+    {
+        "id": "7f589bfa00d74e3da6c1d8e68d0cab7b",
+        "amount": 800,
+        "category": "Shopping",
+        "description": "something",
+        "date": "2026/08/13 at 21:33:27"
+    },
+    {
+        "id": "24a824e2083e481aae9891229e782a90",
+        "amount": 6000,
+        "category": "Shopping",
+        "description": "",
+        "date": "2026/08/13 at 21:35:09"
+    },
+    {
+        "id": "cd0d23b170b047f1adacaaa6e8f7265d",
+        "amount": 7500,
+        "category": "Shopping",
+        "description": "",
+        "date": "2026/08/13 at 21:36:28"
+    },
+    {
+        "id": "1fdb84b2def4472386b68732f7daf5d7",
+        "amount": 8900,
+        "category": "Shopping",
+        "description": "",
+        "date": "2026/08/13 at 21:37:55"
+    },
+    {
+        "id": "c67bf1af7c3a4b92937e3205408ba300",
+        "amount": 6700,
+        "category": "Transport",
+        "description": "going to school",
+        "date": "2026/08/13 at 21:38:41"
+    }
+]
