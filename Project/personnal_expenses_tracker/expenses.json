@@ -54,5 +54,12 @@
         "category": "Transport",
         "description": "going to school",
         "date": "2026/08/13 at 21:38:41"
+    },
+    {
+        "id": "7f59619b138e49ba9e1aa75b77e978b3",
+        "amount": 25000,
+        "category": "Health",
+        "description": "I have some problems",
+        "date": "2026/08/14 at 21:29:59"
     }
 ]

@@ -38,14 +38,3 @@ def handle_negative_value(amount):
     if amount <= 0:
         return None
     return amount
-
-def search_expense(expense_id , expenses):
-
-    index_expense = 0
-    while  expense_id != expenses[index_expense] and index_expense < len(expenses):
-        index_expense += 1
-    
-    if index_expense == len(expenses):
-        return None
-    
-    return index_expense

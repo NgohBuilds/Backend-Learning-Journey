@@ -10,10 +10,10 @@ def handle_option(option):
 
     match option:
         case 1 : option_1()
-        case 2 : print("Option 2")
-        case 3 : print("Option 3")
-        case 4 : print("Option 4")
-        case 5 : print("Option 5")
+        case 2 : option_2()
+        case 3 : option_3()
+        case 4 : option_4()
+        case 5 : option_5()
         case 6 : print("Option 6")
     main()
 
@@ -35,6 +35,7 @@ def option_1 ():
 
      utils.display_category_menu(CATEGORIES)
      category = utils.is_num_option_valid(input("Category :\t"), range(1, len(CATEGORIES) + 1))
+
      while category is None :
         category = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
 
@@ -51,6 +52,27 @@ def option_1 ():
      })
      print("Task Successfully Added ! ")
 
+def option_2():
+    return
+
+def option_3():
+    return
+
+def option_4():
+    return
+
+def option_5():
+
+    expense_id = input("Please Enter Expense ID :\t").strip()
+    
+
+    while expenses.search_expense(expense_id, utils.load_expenses(expenses.expenses_file)) is None :
+        expense_id = input("\nThere's no expense with this Id \n.Please Try Again.\n Enter Expense ID:\t ")
+
+    expenses.display_expense(expense_id)
+
+
+    
 
      
 
