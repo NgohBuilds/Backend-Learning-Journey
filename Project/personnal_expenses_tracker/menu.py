@@ -50,16 +50,57 @@ def option_1 ():
          "description": description,
          "date": date
      })
-     print("Task Successfully Added ! ")
+     print("\nTask Successfully Added !\n")
 
 def option_2():
     return
 
 def option_3():
-    return
+
+     print("===== UPDATE EXPENSE =====\n")
+
+     id = input("Please Enter the ID of expense that you want modify\n ID :\t")
+
+     while expenses.search_expense(id) is None:
+         id = input("There's no expense with this ID . Try Again ! \n ID :\t")
+
+
+     try:
+         amount = utils.handle_negative_value(int(input("Amount :\t")))
+     except:
+         amount = None
+
+     while amount is None :
+        try:
+            amount = utils.handle_negative_value(int(input("\nIncorrect Value (either negative value or non-digit). Try Again !\nAmount :\t")))
+        except:
+            amount = None
+         
+     utils.display_category_menu(CATEGORIES)
+     category = utils.is_num_option_valid(input("Category :\t"), range(1, len(CATEGORIES) + 1))
+
+     while category is None :
+        category = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
+
+     description = input("Description (optionnal) :\t ")
+
+     expenses.update_expenses(expense_id = id, new_exp_info = {"amount": amount, "category": category, "description":description})
+
+     print("\n Expense successfully Updated\n")
+
 
 def option_4():
-    return
+     
+     print("===== DELETE EXPENSE =====\n")
+
+     id = input("Please Enter the ID of expense that you want modify\n ID :\t")
+
+     while expenses.search_expense(id) is None:
+         id = input("There's no expense with this ID . Try Again ! \n ID :\t")
+
+     expenses.delete_expense(id)
+
+     print("\nExpense successfully deleted .\n")
 
 def option_5():
 
