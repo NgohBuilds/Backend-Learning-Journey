@@ -1,12 +1,5 @@
 [
     {
-        "id": "60922e1466d24d96a94d573d7064fd5a",
-        "amount": 300000,
-        "category": "Transport",
-        "description": "",
-        "date": "2026/08/13 at 21:11:29"
-    },
-    {
         "id": "f04e1d32559747d5b5d3827ad20b3082",
         "amount": 1300,
         "category": "Housing",
@@ -15,9 +8,9 @@
     },
     {
         "id": "89e6341251934a63be1e80a9a136da95",
-        "amount": 22500,
-        "category": "Transport",
-        "description": "2",
+        "amount": 200,
+        "category": 7,
+        "description": "",
         "date": "2026/08/13 at 21:30:17"
     },
     {

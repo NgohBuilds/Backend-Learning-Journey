@@ -9,7 +9,7 @@ def add_expenses(exp_dico):
     expenses.append(exp_dico)
     utils.save_expenses(expenses_file, expenses )
 
-def search_expense(expense_id , expenses):
+def search_expense(expense_id , expenses = utils.load_expenses(expenses_file)):
 
     index_expense = 0
 
@@ -51,7 +51,7 @@ def display_expense(expense_id = None):
 
     print(
             f"""
-            
+
                 |            EXPENSE - INFO                 |
                 _____________________________________________
 
@@ -65,6 +65,33 @@ def display_expense(expense_id = None):
 
 
     """)
+
+
+def update_expenses(expense_id, new_exp_info):
+
+    expenses = utils.load_expenses(expenses_file)
+
+    expense_index = search_expense(expense_id, expenses)
+
+    for info, value in new_exp_info.items():
+        expenses[expense_index][info] = value
+
+    utils.save_expenses(expenses_file, expenses)
+
+
+def delete_expense(expense_id):
+
+    expenses = utils.load_expenses(expenses_file)
+
+    expense_index = search_expense(expense_id, expenses)
+
+    expenses.pop(expense_index)
+
+    utils.save_expenses(expenses_file, expenses)
+
+
+
+
 
 
     
