@@ -53,7 +53,32 @@ def option_1 ():
      print("\nTask Successfully Added !\n")
 
 def option_2():
-    return
+
+    print("""===== VIEW EXPENSES =====
+          
+          1. Show Your Expenses
+          2. Show Total Expenses
+          
+          """
+          )
+    
+    while True:
+            user_choice = input("Your Choice :\t")
+            
+
+            if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
+                break
+
+            print("Choose between (1 - 2)\n")
+
+    #   display_expenses_menu(option) if option 1 = expenses by category or expenses all else total expense or total expenses by category
+
+    
+
+
+    
+
+
 
 def option_3():
 
