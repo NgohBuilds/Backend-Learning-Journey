@@ -22,11 +22,12 @@ def search_expense(expense_id , expenses = utils.load_expenses(expenses_file)):
     return index_expense
 
 
-def display_expense(expense_id = None):
+def display_expense(expense_id = None , expense_category = None):
 
     expenses = utils.load_expenses(expenses_file)
 
-    if expense_id is None :
+    if expense_id is None and expense_category is None :
+
         
         print("================= ALL EXPENSES =================\n")
         for expense in expenses:
@@ -46,6 +47,31 @@ def display_expense(expense_id = None):
 
 
                  """)
+            
+    elif expense_category:
+
+        print(f"================= ALL EXPENSES FROM {expense_category.upper()} =================\n")
+
+        expenses_filtered_by_category = [x for x in expenses if x["category"] == expense_category]
+
+        for expense in expenses_filtered_by_category:
+            print(
+                f"""
+
+                |            EXPENSE - INFO                 |
+                _____________________________________________
+
+                    ID : {expense["id"]}, 
+                    AMOUNT : {expense["amount"]}, 
+                    CATEGORY : {expense["category"]}
+                    DESCRIPTION : {expense["description"]}
+                    DATE : {expense["date"]}
+                _____________________________________________
+
+
+
+                 """)     
+            
     index_expense = search_expense(expense_id, expenses)
 
 
