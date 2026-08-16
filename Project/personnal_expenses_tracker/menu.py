@@ -54,10 +54,12 @@ def option_1 ():
 
 def option_2():
 
-    print("""===== VIEW EXPENSES =====
+    print(
+"""
+===== VIEW EXPENSES =====
           
-          1. Show Your Expenses
-          2. Show Total Expenses
+    1. Show Your Expenses
+    2. Show Total Expenses
           
           """
           )
@@ -72,6 +74,46 @@ def option_2():
             print("Choose between (1 - 2)\n")
 
     #   display_expenses_menu(option) if option 1 = expenses by category or expenses all else total expense or total expenses by category
+
+    if user_choice == "1":
+
+        print(
+"""
+===== VIEW EXPENSES =====
+          
+    1. Show All Expenses
+    2. Show expenses from a specified category
+
+""")
+    while True:
+            user_choice = input("Your Choice :\t")
+            
+
+            if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
+                break
+
+            print("Choose between (1 - 2)\n")
+
+
+    if user_choice == "1":
+
+        expenses.display_expense()
+
+    else:
+
+        utils.display_category_menu(CATEGORIES)
+
+        while True :
+
+            num_category_option = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
+
+            if num_category_option:
+                break  
+
+        expenses.display_expense(expense_category =  CATEGORIES[num_category_option - 1])
+    
+
+           
 
     
 
@@ -102,14 +144,18 @@ def option_3():
             amount = None
          
      utils.display_category_menu(CATEGORIES)
-     category = utils.is_num_option_valid(input("Category :\t"), range(1, len(CATEGORIES) + 1))
 
-     while category is None :
+     while True :
+
         category = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
+
+        if category:
+            break
+
 
      description = input("Description (optionnal) :\t ")
 
-     expenses.update_expenses(expense_id = id, new_exp_info = {"amount": amount, "category": category, "description":description})
+     expenses.update_expenses(expense_id = id, new_exp_info = {"amount": amount, "category": CATEGORIES[category - 1], "description":description})
 
      print("\n Expense successfully Updated\n")
 
