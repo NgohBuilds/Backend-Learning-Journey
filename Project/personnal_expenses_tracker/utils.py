@@ -1,4 +1,5 @@
 import json
+from collections import defaultdict
 
 def is_num_option_valid(input, range_ = range(1,7)):
 
@@ -28,13 +29,37 @@ def save_expenses(storage, expenses):
 
     with open(storage, mode='w', encoding='utf-8') as storage_content:
         json.dump(expenses, storage_content , indent=4, ensure_ascii= False)
+        
 
 def display_category_menu(categories):
     print("CATEGORIES :\n")
     for num_opt, category in enumerate(categories, start=1):
         print(f"{num_opt}. {category}")
+
     
 def handle_negative_value(amount):
     if amount <= 0:
         return None
     return amount
+
+
+def sum_expenses(expenses):
+
+    return sum([ expense["amount"]  for expense in expenses ])
+
+
+def sum_expenses_by_category(expenses):
+
+    summary = defaultdict(int)
+
+    for exp in expenses:
+
+        summary[exp["category"]] += exp["amount"]
+
+    return summary
+        
+
+
+
+
+

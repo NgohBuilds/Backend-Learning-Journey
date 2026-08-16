@@ -94,6 +94,23 @@ def display_expense(expense_id = None , expense_category = None):
 
     """)
 
+def display_total_expense():
+    expenses = utils.load_expenses(expenses_file)
+    total = utils.sum_expenses(expenses)
+    print(f"TOTAL : {total}")
+
+def display_total_expense_per_category():
+
+    expenses = utils.load_expenses(expenses_file)
+    expenses_summary = utils.sum_expenses_by_category(expenses)
+
+    for category , total in expenses_summary.items():
+
+        print(f"{category} : {total}")
+
+
+
+
 
 def update_expenses(expense_id, new_exp_info):
 

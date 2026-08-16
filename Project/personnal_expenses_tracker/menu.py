@@ -63,6 +63,8 @@ def option_2():
           
           """
           )
+
+
     
     while True:
             user_choice = input("Your Choice :\t")
@@ -85,7 +87,7 @@ def option_2():
     2. Show expenses from a specified category
 
 """)
-    while True:
+        while True:
             user_choice = input("Your Choice :\t")
             
 
@@ -95,23 +97,54 @@ def option_2():
             print("Choose between (1 - 2)\n")
 
 
-    if user_choice == "1":
+        if user_choice == "1":
 
-        expenses.display_expense()
+            expenses.display_expense()
 
-    else:
+        else:
 
-        utils.display_category_menu(CATEGORIES)
+            utils.display_category_menu(CATEGORIES)
 
-        while True :
+            while True :
 
-            num_category_option = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
+                num_category_option = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
 
-            if num_category_option:
-                break  
+                if num_category_option:
+                    break  
 
-        expenses.display_expense(expense_category =  CATEGORIES[num_category_option - 1])
+            expenses.display_expense(expense_category =  CATEGORIES[num_category_option - 1])
     
+    else:
+                print(
+"""
+===== VIEW EXPENSES =====
+          
+    1. Show Total Expenses
+    2. Show Total per Category
+
+""")
+                while True:
+                    user_choice = input("Your Choice :\t")
+                            
+                
+                    if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
+                        break
+                
+                    print("Choose between (1 - 2)\n")
+                
+                
+                if user_choice == "1":
+                
+                    expenses.display_total_expense()
+                
+                else:
+                    
+                    expenses.display_total_expense_per_category()
+                
+
+        
+
+
 
            
 
