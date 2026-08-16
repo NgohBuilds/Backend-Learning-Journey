@@ -70,12 +70,14 @@ def display_expense(expense_id = None , expense_category = None):
 
 
 
-                 """)     
+                 """)   
             
-    index_expense = search_expense(expense_id, expenses)
+    if expense_id :  
+            
+        index_expense = search_expense(expense_id, expenses)
 
 
-    print(
+        print(
             f"""
 
                 |            EXPENSE - INFO                 |
