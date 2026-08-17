@@ -1,7 +1,7 @@
-import uuid
 import expenses
-from main import main
+import uuid
 import utils
+import main
 from datetime import datetime
 
 CATEGORIES = ("Food", "Transport","Housing","Health","Education","Shopping","Other")
@@ -15,42 +15,49 @@ def handle_option(option):
         case 4 : option_4()
         case 5 : option_5()
         case 6 : print("Option 6")
-    main()
+
+    main.main()
 
 def option_1 ():
+    
+     while True:
+    
+        amount = utils.handle_negative_value(input("\nAmount :\t"))
 
-     try:
-         amount = utils.handle_negative_value(int(input("Amount :\t")))
-     except:
-         amount = 0
+        if amount :
+            break
+            
 
-     while not amount :
-        try:
-            amount = utils.handle_negative_value(int(input("\nIncorrect Value (either negative value or non-digit). Try Again !\nAmount :\t")))
-        except:
-            amount = 0
+
          
-     # Verifier si le montant est valide (positif et digit)
-     id = uuid.uuid4().hex
+     user_id = uuid.uuid4().hex
 
      utils.display_category_menu(CATEGORIES)
-     category = utils.is_num_option_valid(input("Category :\t"), range(1, len(CATEGORIES) + 1))
 
-     while category is None :
-        category = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
+     while True:
+         category = utils.is_num_option_valid(input("\nCategory :\t"), range(1, len(CATEGORIES) + 1))
 
-     description = input("Description (optionnal) :\t ")
+         if category : 
+             break
+
+         print(f"\nSomething goes wrong ! Try with a value between (1 - 7)\n")
+
+
+     description = input("\nDescription (optionnal) :\t ")
 
      date = datetime.now().strftime("%Y/%m/%d at %H:%M:%S")
      
-     expenses.add_expenses({
-         "id" : id,
+     expenses.add_expenses(
+         {
+         "id" : user_id,
          "amount" : amount,
          "category" : CATEGORIES[int(category) - 1],
          "description": description,
          "date": date
      })
+
      print("\nTask Successfully Added !\n")
+
 
 def option_2():
 
@@ -73,9 +80,7 @@ def option_2():
             if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
                 break
 
-            print("Choose between (1 - 2)\n")
-
-    #   display_expenses_menu(option) if option 1 = expenses by category or expenses all else total expense or total expenses by category
+            print("\nChoose between (1 - 2)\n")
 
     if user_choice == "1":
 
@@ -88,13 +93,13 @@ def option_2():
 
 """)
         while True:
-            user_choice = input("Your Choice :\t")
+            user_choice = input("\nYour Choice :\t")
             
 
             if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
                 break
 
-            print("Choose between (1 - 2)\n")
+            print("\nChoose between (1 - 2)\n")
 
 
         if user_choice == "1":
@@ -142,39 +147,26 @@ def option_2():
                     expenses.display_total_expense_per_category()
                 
 
-        
-
-
-
-           
-
-    
-
-
-    
-
-
-
 def option_3():
 
-     print("===== UPDATE EXPENSE =====\n")
+     print("\n===== UPDATE EXPENSE =====\n")
 
-     id = input("Please Enter the ID of expense that you want modify\n ID :\t")
+     while True:
+         
+         id = input("\nPlease Enter the ID of expense that you want modify\n ID :\t")
+         id_exists = expenses.search_expense(id)
 
-     while expenses.search_expense(id) is None:
-         id = input("There's no expense with this ID . Try Again ! \n ID :\t")
+         if id_exists :
+             break
+
+         print("There's no expense with this ID . Try Again ! \n")
 
 
-     try:
-         amount = utils.handle_negative_value(int(input("Amount :\t")))
-     except:
-         amount = None
+     while True :
+        amount = utils.handle_negative_value(input("\nAmount :\t"))
 
-     while amount is None :
-        try:
-            amount = utils.handle_negative_value(int(input("\nIncorrect Value (either negative value or non-digit). Try Again !\nAmount :\t")))
-        except:
-            amount = None
+        if amount:
+            break
          
      utils.display_category_menu(CATEGORIES)
 
@@ -188,31 +180,46 @@ def option_3():
 
      description = input("Description (optionnal) :\t ")
 
-     expenses.update_expenses(expense_id = id, new_exp_info = {"amount": amount, "category": CATEGORIES[category - 1], "description":description})
+     expenses.update_expenses(expense_id = id, 
+                              new_exp_info = 
+                              {
+                                  "amount": amount,
+                                  "category": CATEGORIES[category - 1],
+                                  "description":description
+                              })
 
      print("\n Expense successfully Updated\n")
 
 
 def option_4():
      
-     print("===== DELETE EXPENSE =====\n")
+     print("\n===== DELETE EXPENSE =====\n")
 
      id = input("Please Enter the ID of expense that you want modify\n ID :\t")
+  
+     while True :
+        id_exists = expenses.search_expense(id)
 
-     while expenses.search_expense(id) is None:
-         id = input("There's no expense with this ID . Try Again ! \n ID :\t")
+        if id_exists:
+            break
 
+        id = input("\nThere's no expense with this ID . Try Again ! \n ID :\t")
+         
      expenses.delete_expense(id)
 
      print("\nExpense successfully deleted .\n")
+     
 
 def option_5():
 
-    expense_id = input("Please Enter Expense ID :\t").strip()
-    
+    while True : 
+        expense_id = input("\nEnter Expense ID :\t")
+        id_exists = expenses.search_expense(expense_id)
 
-    while expenses.search_expense(expense_id, utils.load_expenses(expenses.expenses_file)) is None :
-        expense_id = input("\nThere's no expense with this Id \n.Please Try Again.\n Enter Expense ID:\t ")
+        if id_exists :
+            break
+
+        print("\nThere's no expense with this Id \tPlease Try Again.\n")
 
     expenses.display_expense(expense_id)
 
