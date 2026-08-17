@@ -1,31 +1,10 @@
 [
     {
-        "id": "f04e1d32559747d5b5d3827ad20b3082",
-        "amount": 1300,
-        "category": "Housing",
-        "description": "",
-        "date": "2026/08/13 at 21:20:03"
-    },
-    {
-        "id": "89e6341251934a63be1e80a9a136da95",
-        "amount": 1500,
-        "category": "Other",
-        "description": "No description sorry",
-        "date": "2026/08/13 at 21:30:17"
-    },
-    {
         "id": "7f589bfa00d74e3da6c1d8e68d0cab7b",
-        "amount": 800,
-        "category": "Shopping",
-        "description": "something",
+        "amount": 500000,
+        "category": "Education",
+        "description": "\\",
         "date": "2026/08/13 at 21:33:27"
-    },
-    {
-        "id": "24a824e2083e481aae9891229e782a90",
-        "amount": 6000,
-        "category": "Shopping",
-        "description": "",
-        "date": "2026/08/13 at 21:35:09"
     },
     {
         "id": "cd0d23b170b047f1adacaaa6e8f7265d",
@@ -54,5 +33,26 @@
         "category": "Health",
         "description": "I have some problems",
         "date": "2026/08/14 at 21:29:59"
+    },
+    {
+        "id": "4ca1883eed054ad9964eda7a16eb70d2",
+        "amount": 5000,
+        "category": "Transport",
+        "description": "",
+        "date": "2026/08/17 at 18:03:14"
+    },
+    {
+        "id": "df3d744785a44dcba0acbff1a81c49a2",
+        "amount": 7500,
+        "category": "Food",
+        "description": "",
+        "date": "2026/08/17 at 20:29:19"
+    },
+    {
+        "id": "13b1dedabccc4d15ad66ca82b1d497b8",
+        "amount": 999990,
+        "category": "Shopping",
+        "description": "Shopping daily",
+        "date": "2026/08/17 at 20:29:53"
     }
 ]

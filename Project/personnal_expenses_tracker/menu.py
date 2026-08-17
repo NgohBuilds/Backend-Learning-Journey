@@ -2,6 +2,8 @@ import expenses
 import uuid
 import utils
 import main
+import sys
+import time
 from datetime import datetime
 
 CATEGORIES = ("Food", "Transport","Housing","Health","Education","Shopping","Other")
@@ -14,7 +16,7 @@ def handle_option(option):
         case 3 : option_3()
         case 4 : option_4()
         case 5 : option_5()
-        case 6 : print("Option 6")
+        case 6 : exit_menu()
 
     main.main()
 
@@ -223,6 +225,16 @@ def option_5():
 
     expenses.display_expense(expense_id)
 
+
+def exit_menu():
+
+    print("System is shouting down ...")
+    time.sleep(3)
+    print("shouting down ...")
+    time.sleep(1)
+
+    
+    sys.exit()
 
     
 

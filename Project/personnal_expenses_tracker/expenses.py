@@ -2,21 +2,22 @@ import utils
 from pathlib import Path
 
 expenses_file = Path(__file__).parent /"expenses.json"
+EXPENSES = utils.load_expenses(expenses_file)
 
 def add_expenses(exp_dico):
 
-    expenses = utils.load_expenses(expenses_file)
-    expenses.append(exp_dico)
-    utils.save_expenses(expenses_file, expenses )
+    EXPENSES.append(exp_dico)
+    utils.save_expenses(expenses_file, EXPENSES )
 
 def search_expense(expense_id , expenses = utils.load_expenses(expenses_file)):
 
     index_expense = 0
+    expense_id= expense_id.strip()
 
-    while  expense_id != expenses[index_expense]["id"] and index_expense < len(expenses) - 1 :
+    while  expense_id != EXPENSES[index_expense]["id"] and index_expense < len(expenses) - 1 :
         index_expense += 1
     
-    if expenses[index_expense]["id"] != expense_id  :
+    if EXPENSES[index_expense]["id"] != expense_id  :
         return None
     
     return index_expense
@@ -24,13 +25,11 @@ def search_expense(expense_id , expenses = utils.load_expenses(expenses_file)):
 
 def display_expense(expense_id = None , expense_category = None):
 
-    expenses = utils.load_expenses(expenses_file)
-
     if expense_id is None and expense_category is None :
 
         
-        print("================= ALL EXPENSES =================\n")
-        for expense in expenses:
+        print("\n================= ALL EXPENSES =================\n")
+        for expense in EXPENSES:
             print(
                 f"""
 
@@ -50,9 +49,9 @@ def display_expense(expense_id = None , expense_category = None):
             
     elif expense_category:
 
-        print(f"================= ALL EXPENSES FROM {expense_category.upper()} =================\n")
+        print(f"\n================= ALL EXPENSES FROM {expense_category.upper()} =================\n")
 
-        expenses_filtered_by_category = [x for x in expenses if x["category"] == expense_category]
+        expenses_filtered_by_category = [x for x in EXPENSES if x["category"] == expense_category]
 
         for expense in expenses_filtered_by_category:
             print(
@@ -74,7 +73,7 @@ def display_expense(expense_id = None , expense_category = None):
             
     if expense_id :  
             
-        index_expense = search_expense(expense_id, expenses)
+        index_expense = search_expense(expense_id, EXPENSES)
 
 
         print(
@@ -83,11 +82,11 @@ def display_expense(expense_id = None , expense_category = None):
                 |            EXPENSE - INFO                 |
                 _____________________________________________
 
-                    ID : {expenses[index_expense]["id"]}, 
-                    AMOUNT : {expenses[index_expense]["amount"]}, 
-                    CATEGORY : {expenses[index_expense]["category"]}
-                    DESCRIPTION : {expenses[index_expense]["description"]}
-                    DATE : {expenses[index_expense]["date"]}
+                    ID : {EXPENSES[index_expense]["id"]}, 
+                    AMOUNT : {EXPENSES[index_expense]["amount"]}, 
+                    CATEGORY : {EXPENSES[index_expense]["category"]}
+                    DESCRIPTION : {EXPENSES[index_expense]["description"]}
+                    DATE : {EXPENSES[index_expense]["date"]}
                 _____________________________________________
 
 
@@ -95,18 +94,17 @@ def display_expense(expense_id = None , expense_category = None):
     """)
 
 def display_total_expense():
-    expenses = utils.load_expenses(expenses_file)
-    total = utils.sum_expenses(expenses)
-    print(f"TOTAL : {total}")
+
+    total = utils.sum_expenses(EXPENSES)
+    print(f"\nTOTAL : {total}")
 
 def display_total_expense_per_category():
 
-    expenses = utils.load_expenses(expenses_file)
-    expenses_summary = utils.sum_expenses_by_category(expenses)
+    expenses_summary = utils.sum_expenses_by_category(EXPENSES)
 
     for category , total in expenses_summary.items():
 
-        print(f"{category} : {total}")
+        print(f"\n{category} : {total}\n")
 
 
 
@@ -114,25 +112,23 @@ def display_total_expense_per_category():
 
 def update_expenses(expense_id, new_exp_info):
 
-    expenses = utils.load_expenses(expenses_file)
 
-    expense_index = search_expense(expense_id, expenses)
+    expense_index = search_expense(expense_id, EXPENSES)
 
     for info, value in new_exp_info.items():
-        expenses[expense_index][info] = value
+        EXPENSES[expense_index][info] = value
 
-    utils.save_expenses(expenses_file, expenses)
+    utils.save_expenses(expenses_file, EXPENSES)
 
 
 def delete_expense(expense_id):
 
-    expenses = utils.load_expenses(expenses_file)
 
-    expense_index = search_expense(expense_id, expenses)
+    expense_index = search_expense(expense_id, EXPENSES)
 
-    expenses.pop(expense_index)
+    EXPENSES.pop(expense_index)
 
-    utils.save_expenses(expenses_file, expenses)
+    utils.save_expenses(expenses_file, EXPENSES)
 
 
 
