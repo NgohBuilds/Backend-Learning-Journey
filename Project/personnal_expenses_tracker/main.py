@@ -19,12 +19,17 @@ def main():
 
     """
 )
-
-    user_input = utils.is_num_option_valid(input("\nChoose An Option :\t"))
     
-    while user_input is None :
-        user_input = utils.is_num_option_valid(input("\nChoose Option between (1 - 6).Try Again !\n Option : \t"))
+    while True :
+        user_input = utils.is_num_option_valid(input("\nChoose An Option :\t"))
+
+        if user_input :
+            break
+
+        print("\nSomething goes wrong\tChoose an Option between (1 - 6).\n")
+
     menu.handle_option(user_input)
+    
 
 if __name__ == "__main__" or __name__ == "__menu__":
     
