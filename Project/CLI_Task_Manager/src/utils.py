@@ -11,11 +11,11 @@ class ValueFormatError(ValueError):
     pass
 
 
-def is_value_option(input):
+def is_value_option(user_input):
     """Evaluate if the input is between 1 - 9 [options]"""
 
     try: 
-        input = int(input)
+        input = int(user_input)
     except ValueError :
         return None
 
