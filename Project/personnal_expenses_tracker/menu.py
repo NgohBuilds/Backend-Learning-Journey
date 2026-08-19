@@ -1,7 +1,6 @@
 import expenses
 import uuid
 import utils
-import main
 import sys
 import time
 from datetime import datetime
@@ -18,7 +17,6 @@ def handle_option(option):
         case 5 : option_5()
         case 6 : exit_menu()
 
-    main.main()
 
 def option_1 ():
     
@@ -26,7 +24,7 @@ def option_1 ():
     
         amount = utils.handle_negative_value(input("\nAmount :\t"))
 
-        if amount :
+        if amount is not None:
             break
             
 
@@ -39,17 +37,17 @@ def option_1 ():
      while True:
          category = utils.is_num_option_valid(input("\nCategory :\t"), range(1, len(CATEGORIES) + 1))
 
-         if category : 
+         if category is not None : 
              break
 
          print(f"\nSomething goes wrong ! Try with a value between (1 - 7)\n")
 
 
-     description = input("\nDescription (optionnal) :\t ")
+     description = input("\nDescription (optional) :\t ")
 
      date = datetime.now().strftime("%Y/%m/%d at %H:%M:%S")
      
-     expenses.add_expenses(
+     expenses.add_expense(
          {
          "id" : user_id,
          "amount" : amount,
@@ -58,14 +56,14 @@ def option_1 ():
          "date": date
      })
 
-     print("\nTask Successfully Added !\n")
+     print("\nExepense successfully added !\n")
 
 
 def option_2():
 
     print(
 """
-===== VIEW EXPENSES =====
+===== VIEW YOUR EXPENSES =====
           
     1. Show Your Expenses
     2. Show Total Expenses
@@ -79,7 +77,7 @@ def option_2():
             user_choice = input("Your Choice :\t")
             
 
-            if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
+            if utils.is_num_option_valid(user_choice,  range_ = [1,2]) is not None :
                 break
 
             print("\nChoose between (1 - 2)\n")
@@ -88,7 +86,7 @@ def option_2():
 
         print(
 """
-===== VIEW EXPENSES =====
+===== SHOW YOUR EXPENSE INFO  =====
           
     1. Show All Expenses
     2. Show expenses from a specified category
@@ -98,7 +96,7 @@ def option_2():
             user_choice = input("\nYour Choice :\t")
             
 
-            if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
+            if utils.is_num_option_valid(user_choice,  range_ = [1,2]) is not None :
                 break
 
             print("\nChoose between (1 - 2)\n")
@@ -116,7 +114,7 @@ def option_2():
 
                 num_category_option = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
 
-                if num_category_option:
+                if num_category_option is not None:
                     break  
 
             expenses.display_expense(expense_category =  CATEGORIES[num_category_option - 1])
@@ -124,7 +122,7 @@ def option_2():
     else:
                 print(
 """
-===== VIEW EXPENSES =====
+===== SHOW YOUR TOTAL EXPENSES ACCOUNT=====
           
     1. Show Total Expenses
     2. Show Total per Category
@@ -134,7 +132,7 @@ def option_2():
                     user_choice = input("Your Choice :\t")
                             
                 
-                    if utils.is_num_option_valid(user_choice,  range_ = [1,2]) :
+                    if utils.is_num_option_valid(user_choice,  range_ = [1,2]) is not None :
                         break
                 
                     print("Choose between (1 - 2)\n")
@@ -156,9 +154,9 @@ def option_3():
      while True:
          
          id = input("\nPlease Enter the ID of expense that you want modify\n ID :\t")
-         id_exists = expenses.search_expense(id)
+         id_exists = expenses.find_expense_index(id)
 
-         if id_exists :
+         if id_exists is not None:
              break
 
          print("There's no expense with this ID . Try Again ! \n")
@@ -167,7 +165,7 @@ def option_3():
      while True :
         amount = utils.handle_negative_value(input("\nAmount :\t"))
 
-        if amount:
+        if amount is not None:
             break
          
      utils.display_category_menu(CATEGORIES)
@@ -176,13 +174,13 @@ def option_3():
 
         category = utils.is_num_option_valid(input("\nYou have to choose between (1 - 7). Try Again !\nCategory :\t"), range(1, len(CATEGORIES) + 1))
 
-        if category:
+        if category is not None:
             break
 
 
      description = input("Description (optionnal) :\t ")
 
-     expenses.update_expenses(expense_id = id, 
+     expenses.update_expense(expense_id = id, 
                               new_exp_info = 
                               {
                                   "amount": amount,
@@ -200,9 +198,9 @@ def option_4():
      id = input("Please Enter the ID of expense that you want modify\n ID :\t")
   
      while True :
-        id_exists = expenses.search_expense(id)
+        id_exists = expenses.find_expense_index(id)
 
-        if id_exists:
+        if id_exists is not None:
             break
 
         id = input("\nThere's no expense with this ID . Try Again ! \n ID :\t")
@@ -216,9 +214,9 @@ def option_5():
 
     while True : 
         expense_id = input("\nEnter Expense ID :\t")
-        id_exists = expenses.search_expense(expense_id)
+        id_exists = expenses.find_expense_index(expense_id)
 
-        if id_exists :
+        if id_exists is not None :
             break
 
         print("\nThere's no expense with this Id \tPlease Try Again.\n")
@@ -226,19 +224,32 @@ def option_5():
     expenses.display_expense(expense_id)
 
 
+def show_main_menu():
+    print(
+        """
+    =================================================
+                 NOVATECH EXPENSES TRACKER
+    =================================================
+    
+    1. Add a new expense
+    2. View expenses
+    3. Update an expense
+    4. Delete an expense
+    5. Search an expense
+    6. Exit
+    
+    ----------------------------------------------
+    
+        """
+    )
+    
+
 def exit_menu():
 
-    print("System is shouting down ...")
+    print("System is shutting down ...")
     time.sleep(3)
-    print("shouting down ...")
+    print("shutting down ...")
     time.sleep(1)
 
     
     sys.exit()
-
-    
-
-     
-
-     
-     
