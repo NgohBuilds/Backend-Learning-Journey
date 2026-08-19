@@ -9,6 +9,7 @@ This project is the **second project** of my Backend Learning Journey. It builds
 ## Project Overview
 
 The Personal Expenses Tracker allows users to manage their expenses directly from the terminal.
+[Project Overview](./expenses_tracker_final.png)
 
 The application stores expense data in a JSON file, making the data persistent between application sessions.
 
