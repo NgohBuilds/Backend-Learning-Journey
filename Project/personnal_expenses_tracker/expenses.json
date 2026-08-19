@@ -1,12 +1,5 @@
 [
     {
-        "id": "7f589bfa00d74e3da6c1d8e68d0cab7b",
-        "amount": 500000,
-        "category": "Education",
-        "description": "\\",
-        "date": "2026/08/13 at 21:33:27"
-    },
-    {
         "id": "cd0d23b170b047f1adacaaa6e8f7265d",
         "amount": 7500,
         "category": "Shopping",
@@ -54,5 +47,26 @@
         "category": "Shopping",
         "description": "Shopping daily",
         "date": "2026/08/17 at 20:29:53"
+    },
+    {
+        "id": "58658f43eb424b30a583540d7df02d85",
+        "amount": 4599,
+        "category": "Transport",
+        "description": "",
+        "date": "2026/08/17 at 21:19:17"
+    },
+    {
+        "id": "10891094e086408791028a1180e3aec9",
+        "amount": 650000,
+        "category": "Health",
+        "description": "",
+        "date": "2026/08/19 at 17:23:56"
+    },
+    {
+        "id": "b988fdf5d0ac480f97b09bec2e917444",
+        "amount": 45000,
+        "category": "Transport",
+        "description": "",
+        "date": "2026/08/19 at 17:46:50"
     }
 ]
