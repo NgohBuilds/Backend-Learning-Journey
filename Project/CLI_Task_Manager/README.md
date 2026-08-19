@@ -20,24 +20,24 @@ The goal was not only to make the application work, but also to write code that 
 
 ## Features
 
-* ✅ Create a new task
-* ✅ View all tasks
-* ✅ Update an existing task
-* ✅ Delete a task
-* ✅ Mark tasks as completed
-* ✅ Mark completed tasks as pending
-* ✅ Filter tasks by status
-* ✅ Automatic task persistence using JSON
-* ✅ Automatic unique ID generation with UUID
+-✅ Create a new task
+-✅ View all tasks
+-✅ Update an existing task
+-✅ Delete a task
+-✅ Mark tasks as completed
+-✅ Mark completed tasks as pending
+-✅ Filter tasks by status
+-✅ Automatic task persistence using JSON
+-✅ Automatic unique ID generation with UUID
 
 ---
 
 ## Technologies Used
 
-* Python 3
-* JSON
-* pathlib
-* uuid
+-Python 3
+-JSON
+-pathlib
+-uuid
 
 ---
 
@@ -65,18 +65,18 @@ CLI_Task_Manager/
 
 During this project I practiced:
 
-* Modular programming
-* Function decomposition
-* CRUD operations
-* JSON file persistence
-* File handling
-* Error handling
-* Custom exceptions
-* UUID generation
-* Path management with `pathlib`
-* Code refactoring
-* Separation of responsibilities
-* Building a CLI application
+-Modular programming
+-Function decomposition
+-CRUD operations
+-JSON file persistence
+-File handling
+-Error handling
+-Custom exceptions
+-UUID generation
+-Path management with `pathlib`
+-Code refactoring
+-Separation of responsibilities
+-Building a CLI application
 
 ---
 
@@ -97,14 +97,14 @@ Following this workflow helped me understand the importance of writing maintaina
 
 This project taught me how to:
 
-* Design an application before writing code
-* Organize a Python project into multiple modules
-* Persist application data using JSON
-* Build reusable helper functions
-* Refactor working code into a cleaner architecture
-* Handle invalid user input gracefully
-* Work with file paths using `pathlib`
-* Improve code quality without changing application behavior
+-Design an application before writing code
+-Organize a Python project into multiple modules
+-Persist application data using JSON
+-Build reusable helper functions
+-Refactor working code into a cleaner architecture
+-Handle invalid user input gracefully
+-Work with file paths using `pathlib`
+-Improve code quality without changing application behavior
 
 ---
 
@@ -112,14 +112,14 @@ This project taught me how to:
 
 Possible future enhancements include:
 
-* Task priorities
-* Due dates
-* Categories
-* Keyword search
-* Unit testing
-* Object-Oriented implementation
-* SQLite database
-* Graphical User Interface (GUI)
+-Task priorities
+-Due dates
+-Categories
+-Keyword search
+-Unit testing
+-Object-Oriented implementation
+-SQLite database
+-Graphical User Interface (GUI)
 
 ---
 
